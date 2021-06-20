@@ -14,7 +14,7 @@ At one point in our lives, we've all experienced having no data/internet connect
 
 Below is an example that shows the application's appearance and functionality:
 
-![Progressive Budget](./public/images/.PNG)
+![Progressive Budget](./public/images/progressive-budget.PNG)
 
 ## Deployed Link
 Please feel free to visit the live web application. Link is below.
