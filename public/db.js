@@ -48,24 +48,24 @@ function checkDatabase() {
           'Content-Type': 'application/json',
         },
       })
-        .then((response) => response.json())
-        .then((res) => {
-          // If our returned response is not empty
-          if (res.length !== 0) {
-            // Open another transaction to BudgetStore with the ability to read and write
-            transaction = db.transaction(['BudgetStore'], 'readwrite');
+      .then((response) => response.json())
+      .then((res) => {
+        // If our returned response is not empty
+        if (res.length !== 0) {
+          // Open another transaction to BudgetStore with the ability to read and write
+          transaction = db.transaction(['BudgetStore'], 'readwrite');
 
-            // Assign the current store to a variable
-            const currentStore = transaction.objectStore('BudgetStore');
+          // Assign the current store to a variable
+          const currentStore = transaction.objectStore('BudgetStore');
 
-            // Clear existing entries because our bulk add was successful
-            currentStore.clear();
-            console.log('Clearing store 🧹');
-          }
-        });
+          // Clear existing entries because our bulk add was successful
+          currentStore.clear();
+          console.log('Clearing store 🧹');
+        }
+      });
     }
   };
-}
+};
 
 request.onsuccess = function (e) {
   console.log('success');

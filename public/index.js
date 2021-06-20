@@ -22,7 +22,7 @@ function populateTotal() {
 
   let totalEl = document.querySelector("#total");
   totalEl.textContent = total;
-}
+};
 
 function populateTable() {
   let tbody = document.querySelector("#tbody");
@@ -38,7 +38,7 @@ function populateTable() {
 
     tbody.appendChild(tr);
   });
-}
+};
 
 function populateChart() {
   // copy array and reverse it
@@ -60,23 +60,23 @@ function populateChart() {
   // remove old chart if it exists
   if (myChart) {
     myChart.destroy();
-  }
+  };
 
   let ctx = document.getElementById("myChart").getContext("2d");
 
   myChart = new Chart(ctx, {
     type: 'line',
-      data: {
-        labels,
-        datasets: [{
-            label: "Total Over Time",
-            fill: true,
-            backgroundColor: "#6666ff",
-            data
-        }]
+    data: {
+      labels,
+      datasets: [{
+        label: "Total Over Time",
+        fill: true,
+        backgroundColor: "#6666ff",
+        data
+      }]
     }
   });
-}
+};
 
 function sendTransaction(isAdding) {
   let nameEl = document.querySelector("#t-name");
@@ -102,7 +102,7 @@ function sendTransaction(isAdding) {
   // if subtracting funds, convert amount to negative number
   if (!isAdding) {
     transaction.value *= -1;
-  }
+  };
 
   // add to beginning of current array of data
   transactions.unshift(transaction);
@@ -111,7 +111,7 @@ function sendTransaction(isAdding) {
   populateChart();
   populateTable();
   populateTotal();
-  
+
   // also send to server
   fetch("/api/transaction", {
     method: "POST",
@@ -121,7 +121,7 @@ function sendTransaction(isAdding) {
       "Content-Type": "application/json"
     }
   })
-  .then(response => {    
+  .then(response => {
     return response.json();
   })
   .then(data => {
@@ -142,12 +142,12 @@ function sendTransaction(isAdding) {
     nameEl.value = "";
     amountEl.value = "";
   });
-}
+};
 
-document.querySelector("#add-btn").onclick = function() {
+document.querySelector("#add-btn").onclick = function () {
   sendTransaction(true);
 };
 
-document.querySelector("#sub-btn").onclick = function() {
+document.querySelector("#sub-btn").onclick = function () {
   sendTransaction(false);
 };
